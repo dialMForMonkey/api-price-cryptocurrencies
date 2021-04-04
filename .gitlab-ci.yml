@@ -1,0 +1,21 @@
+
+build:
+  stage: build
+  script:
+    - docker login -u $USER_DOCKER_REGISTRY  -p $PASSWORD_DOCKER_REGISTRY
+    - docker build . -t dialmformonkey/api-price:latest
+    - docker push dialmformonkey/api-price:latest
+
+deploy:
+  image: "registry.gitlab.com/gitlab-org/cluster-integration/auto-deploy-image"
+  stage: deploy
+  script:
+    - kubectl create secret docker-registry regcred --docker-server=https://index.docker.io/v2/ --docker-username=$USER_DOCKER_REGISTRY --docker-password=$PASSWORD_DOCKER_REGISTRY --docker-email=gabrielsouza849@gmail.com
+    - kubectl apply -f ./api-deployment.yaml
+    - kubectl apply -f ./api-service.yaml
+
+
+  environment:
+    name: homolog
+    kubernetes:
+      namespace: ${KUBE_NAMESPACE}

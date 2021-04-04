@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: api-price
+  name: api-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: api-price
+  template:
+    metadata:
+      labels:
+        app: api-price
+    spec:
+      imagePullSecrets:
+        - name: "regcred"
+      containers:
+        - image: dialmformonkey/api-price
+          name: api-price-container
+          ports:
+            - containerPort: 8080
+
+          env:
+            - name: RUST_LOG
+              value: "info"
+            - name: TICKER
+              value: "ACMFT|ACORDO01|ASRFT|ATMFT|BCH|BTC|CAIFT|CHZ|ETH|GALFT|IMOB01|JUVFT|LINK|LTC|MBCONS01|MBCONS02|MBFP01|MBFP02|MBPRK01|MBPRK02|MBPRK03|MBPRK04|MBVASCO01|MCO2|OGFT|PAXG|PSGFT|USDC|WBX|XRP"
