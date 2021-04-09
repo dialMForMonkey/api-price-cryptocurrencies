@@ -11,12 +11,12 @@ env:
 
 jobs:
   build:
-
-    runs-on: rust:1.50-slim
+    
+    runs-on: ubuntu-20.04
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build
+    - name: Check
       run: cargo check --verbose
     #- name: Run tests
     #  run: cargo test --verbose
