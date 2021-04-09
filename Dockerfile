@@ -1,10 +1,13 @@
-FROM rust:1.50-slim
-
-EXPOSE 8080
+FROM rust:1.50-alpine as builder
 
 WORKDIR /API
 COPY . .
-## adicionar um gerenciado da api no futuro
+RUN apk add --no-cache musl-dev
 RUN cargo build --release --target-dir ./build
 
-ENTRYPOINT build/release/price-cryptocurrencies
+FROM alpine
+WORKDIR /var/api/
+COPY --from=builder /API/build/release/price-cryptocurrencies .
+EXPOSE 8080
+RUN ls
+ENTRYPOINT ./price-cryptocurrencies

@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   api:
-    build: .
+    image: price_cryptocurrencies
     container_name: api_price
     environment:
      - RUST_LOG=info
