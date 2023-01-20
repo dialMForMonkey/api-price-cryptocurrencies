@@ -1,4 +1,4 @@
-FROM rust:1.50-alpine as builder
+FROM rust:1.66.1-alpine as builder
 
 WORKDIR /API
 COPY . .
