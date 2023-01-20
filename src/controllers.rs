@@ -32,9 +32,9 @@ async fn get_price_crypt_money(query: web::Query<Info>) ->impl Responder {
 
    pub fn config(cfg: &mut web::ServiceConfig) {
        cfg.service(
-           web::scope("/money")
+           web::scope("/v1")
                .service(
-               web::resource("/")
+               web::resource("/money")
                    .route(web::get().to(get_price_crypt_money))
            )
 
