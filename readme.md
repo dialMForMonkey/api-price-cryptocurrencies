@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/dialMForMonkey/api-price-cryptocurrencies/actions/workflows/rust.yml/badge.svg)]()
+[![Rust](https://github.com/dialMForMonkey/api-price-cryptocurrencies/actions/workflows/rust.yml/badge.svg?branch=main)](https://github.com/dialMForMonkey/api-price-cryptocurrencies/actions/workflows/rust.yml)
 # Api Price Cryptocurrences
 
 This api get price of Cryptocurrences, from mercadobitcoin
