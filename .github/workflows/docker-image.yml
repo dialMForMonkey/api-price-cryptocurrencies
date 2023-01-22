@@ -28,6 +28,6 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: ${{env.REPO_NAME}}:latest
+        tags: dialmformonkey/${{env.REPO_NAME}}:latest
 
       
